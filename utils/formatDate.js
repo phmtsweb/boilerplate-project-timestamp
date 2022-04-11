@@ -1,10 +1,11 @@
 function formatDate(date) {
 
     const dateNow = !date ? new Date() : (isNumeric(date)  ? new Date(+date) : new Date(date));
-    if (!dateNow) throw Error('Invalid Date');
+    const [unix, utc] = [dateNow.getTime(), dateNow.toUTCString()];
+    if(!unix) throw Error('Invalid Date');
     return {
-        unix: Math.floor(dateNow.getTime()),
-        utc: dateNow.toUTCString()
+        unix,
+        utc
     }
 }
 
