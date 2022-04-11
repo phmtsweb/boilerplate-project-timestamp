@@ -34,13 +34,9 @@ app.get('/api/:date?', (req, res) => {
   let { date } = req.params;
   try {
     const dateNow = formatDate(date);
-    return res.render('index', {
-      dateInfo: JSON.stringify(dateNow)
-    });
+    return res.json(dateNow);
   } catch (err) {
-    return res.render('index', {
-      dateInfo: `{ error: ${err.message} }`
-    });
+    return res.json({error: err.message});
   }
   
 });
